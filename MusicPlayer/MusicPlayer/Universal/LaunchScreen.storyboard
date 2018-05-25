@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAu-M8-qjI">
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OCLaunchLogo_96x96_" translatesAutoresizingMaskIntoConstraints="NO" id="aUH-Zz-qFd">
+                                        <rect key="frame" x="140" y="285.5" width="96" height="96"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="96" id="8WJ-1d-rpR"/>
+                                            <constraint firstAttribute="width" constant="96" id="Ys7-aA-5yM"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="aUH-Zz-qFd" firstAttribute="centerX" secondItem="YAu-M8-qjI" secondAttribute="centerX" id="bnn-93-qLZ"/>
+                                    <constraint firstItem="aUH-Zz-qFd" firstAttribute="centerY" secondItem="YAu-M8-qjI" secondAttribute="centerY" id="eda-K2-PTU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="YAu-M8-qjI" secondAttribute="leading" id="4hz-ff-pet"/>
+                            <constraint firstItem="YAu-M8-qjI" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="Atn-gL-JR8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="YAu-M8-qjI" secondAttribute="top" constant="20" id="dbV-UT-NM0"/>
+                            <constraint firstItem="YAu-M8-qjI" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="qBI-sP-bVl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +51,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="OCLaunchLogo_96x96_" width="96" height="96"/>
+    </resources>
 </document>
