@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		D42A97453A7FCA58B5633C58 /* Pods_MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E648F72F0F9676E9C85A4C86 /* Pods_MusicPlayer.framework */; };
-		F863B48A20B8721200DB685F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F863B48920B8721200DB685F /* AppDelegate.swift */; };
-		F863B48C20B8721200DB685F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F863B48B20B8721200DB685F /* ViewController.swift */; };
-		F863B48F20B8721200DB685F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F863B48D20B8721200DB685F /* Main.storyboard */; };
-		F863B49120B8721300DB685F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F863B49020B8721300DB685F /* Assets.xcassets */; };
-		F863B49420B8721300DB685F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F863B49220B8721300DB685F /* LaunchScreen.storyboard */; };
+		E7E3A61CF2FD637AE4971AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3A4905544111B1BD3F7C4 /* AppDelegate.swift */; };
+		E7E3A689EDE87E5ED16C0224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7E3A0268CA844564F70AE26 /* Assets.xcassets */; };
+		E7E3AB5E5DAB72E4538A2276 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3A686B0EC9F26827B1A9C /* ViewController.swift */; };
+		E7E3AC25C501072E191A5E91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7E3A40345FDEF5295DAE3D6 /* Main.storyboard */; };
+		E7E3ACA82E26E470236BADEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7E3A56F87B2CE38FF3FE89A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8B2D00DAF143B8FFFCEA09F9 /* Pods-MusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicPlayer/Pods-MusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE1FC22AB65D04DDD578BFF /* Pods-MusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicPlayer/Pods-MusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		E648F72F0F9676E9C85A4C86 /* Pods_MusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7E3A0268CA844564F70AE26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E7E3A09084174217AFF41F43 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		E7E3A40345FDEF5295DAE3D6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E7E3A4905544111B1BD3F7C4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E7E3A56F87B2CE38FF3FE89A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E7E3A686B0EC9F26827B1A9C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F863B48620B8721200DB685F /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F863B48920B8721200DB685F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F863B48B20B8721200DB685F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F863B48E20B8721200DB685F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F863B49020B8721300DB685F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F863B49320B8721300DB685F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F863B49520B8721300DB685F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +40,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E7E3A7DD1E713688306833B7 /* Universal */ = {
+			isa = PBXGroup;
+			children = (
+				E7E3A4905544111B1BD3F7C4 /* AppDelegate.swift */,
+				E7E3A0268CA844564F70AE26 /* Assets.xcassets */,
+				E7E3A40345FDEF5295DAE3D6 /* Main.storyboard */,
+				E7E3A09084174217AFF41F43 /* Info.plist */,
+				E7E3A56F87B2CE38FF3FE89A /* LaunchScreen.storyboard */,
+			);
+			path = Universal;
+			sourceTree = "<group>";
+		};
+		E7E3ABA985702D50EB94A39F /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				E7E3A686B0EC9F26827B1A9C /* ViewController.swift */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
 		EC1E48D684F0CE22E4074207 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,12 +89,8 @@
 		F863B48820B8721200DB685F /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				F863B48920B8721200DB685F /* AppDelegate.swift */,
-				F863B48B20B8721200DB685F /* ViewController.swift */,
-				F863B48D20B8721200DB685F /* Main.storyboard */,
-				F863B49020B8721300DB685F /* Assets.xcassets */,
-				F863B49220B8721300DB685F /* LaunchScreen.storyboard */,
-				F863B49520B8721300DB685F /* Info.plist */,
+				E7E3ABA985702D50EB94A39F /* iPhone */,
+				E7E3A7DD1E713688306833B7 /* Universal */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";
@@ -148,9 +164,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F863B49420B8721300DB685F /* LaunchScreen.storyboard in Resources */,
-				F863B49120B8721300DB685F /* Assets.xcassets in Resources */,
-				F863B48F20B8721200DB685F /* Main.storyboard in Resources */,
+				E7E3A689EDE87E5ED16C0224 /* Assets.xcassets in Resources */,
+				E7E3AC25C501072E191A5E91 /* Main.storyboard in Resources */,
+				E7E3ACA82E26E470236BADEE /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,31 +216,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F863B48C20B8721200DB685F /* ViewController.swift in Sources */,
-				F863B48A20B8721200DB685F /* AppDelegate.swift in Sources */,
+				E7E3AB5E5DAB72E4538A2276 /* ViewController.swift in Sources */,
+				E7E3A61CF2FD637AE4971AD8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F863B48D20B8721200DB685F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F863B48E20B8721200DB685F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F863B49220B8721300DB685F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F863B49320B8721300DB685F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F863B49620B8721300DB685F /* Debug */ = {
@@ -348,9 +345,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8QAM996SBN;
-				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				INFOPLIST_FILE = MusicPlayer/Universal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-x11901.MusicPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -365,9 +365,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8QAM996SBN;
-				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				INFOPLIST_FILE = MusicPlayer/Universal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-x11901.MusicPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
