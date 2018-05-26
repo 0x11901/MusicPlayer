@@ -5,8 +5,11 @@
 
 import UIKit
 
+let audioCellReuseID = "audioCellReuseID"
+
 class MainViewController: UIViewController {
     @IBOutlet var mainTableView: UITableView!
+    var models: [AudioModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,13 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return models.count
+    }
+
+    func tableView(_: UITableView, cellForRowAt _: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
 }
 
 extension MainViewController: UITableViewDelegate {
