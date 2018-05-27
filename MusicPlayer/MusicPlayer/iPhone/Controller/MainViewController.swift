@@ -19,14 +19,19 @@ class MainViewController: UIViewController {
         noDataView.isHidden = true
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        mainTableView.rowHeight = 96
         if #available(iOS 9.3, *) {
             MPMediaLibrary.requestAuthorization { state in
                 switch state {
                 case .authorized:
-                    self.reloadData()
+                    DispatchQueue.main.async {
+                        self.reloadData()
+                    }
                     break
                 default:
-                    self.noData()
+                    DispatchQueue.main.async {
+                        self.noData()
+                    }
                     break
                 }
             }
@@ -51,12 +56,17 @@ extension MainViewController {
     func reloadData() {
         let items = MPMediaQuery.songs().items
         guard let songs = items else {
-            self.noData()
+            noData()
             return
         }
         for song in songs {
-            song.artwork?.image(at: CGSize(96,96))
+            let title = song.title
+            let subtitle = song.artist
+            let icon = song.artwork?.image(at: CGSize(width: 96, height: 96))
+            let model = AudioModel(title: title, subtitle: subtitle, icon: icon)
+            models.append(model)
         }
+        mainTableView.reloadData()
     }
 }
 
@@ -65,10 +75,15 @@ extension MainViewController: UITableViewDataSource {
         return models.count
     }
 
-    func tableView(_: UITableView, cellForRowAt _: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: AudioTableViewCell = tableView.dequeueReusableCell(withIdentifier: audioCellReuseID) as! AudioTableViewCell
+        cell.model = models[indexPath.row]
+        return cell
     }
 }
 
 extension MainViewController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

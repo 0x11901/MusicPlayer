@@ -9,9 +9,9 @@
 import UIKit
 
 class AudioTableViewCell: UITableViewCell {
-    @IBOutlet var icon: UIImageView!
-    @IBOutlet var title: UILabel!
-    @IBOutlet var subtitle: UILabel!
+    @IBOutlet private var icon: UIImageView!
+    @IBOutlet private var title: UILabel!
+    @IBOutlet private var subtitle: UILabel!
 
     public var model: AudioModel? {
         didSet {
@@ -36,7 +36,7 @@ extension AudioTableViewCell {
         title.text = model?.title ?? ""
         subtitle.text = model?.subtitle ?? ""
         if let icon = model?.icon {
-            self.icon.image = UIImage(named: icon)
+            self.icon.image = icon
         }
     }
 }
