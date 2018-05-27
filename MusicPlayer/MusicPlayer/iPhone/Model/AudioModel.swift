@@ -8,5 +8,5 @@ import Foundation
 class AudioModel {
     var title: String?
     var subtitle: String?
-    var icon: String?
+    var icon: UIImage?
 }
