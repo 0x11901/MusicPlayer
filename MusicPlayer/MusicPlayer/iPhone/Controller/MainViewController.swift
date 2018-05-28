@@ -61,7 +61,7 @@ extension MainViewController {
             noData()
             return
         }
-        for song in self.songs {
+        for song in songs {
             let title = song.title
             let subtitle = song.artist
             let icon = song.artwork?.image(at: CGSize(width: 96, height: 96))
@@ -88,6 +88,11 @@ extension MainViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let systemPlayer = MPMusicPlayerController.systemMusicPlayer
+        if let songs = self.songs {
+            let systemPlayer = MPMusicPlayerController.systemMusicPlayer
+            systemPlayer.setQueue(with: songs)
+            systemPlayer.play()
+        }
+
     }
 }
