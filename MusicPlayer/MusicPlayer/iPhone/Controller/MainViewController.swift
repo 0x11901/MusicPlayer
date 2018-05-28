@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet var noDataView: UIView!
     var models: [AudioModel] = []
+    var songs: MPMediaQuery?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,16 +55,17 @@ extension MainViewController {
     }
 
     func reloadData() {
-        let items = MPMediaQuery.songs().items
+        self.songs = MPMediaQuery.songs()
+        let items = self.songs?.items
         guard let songs = items else {
             noData()
             return
         }
-        for song in songs {
+        for song in self.songs {
             let title = song.title
             let subtitle = song.artist
             let icon = song.artwork?.image(at: CGSize(width: 96, height: 96))
-            let model = AudioModel(title: title, subtitle: subtitle, icon: icon)
+            let model = AudioModel(title: title, subtitle: subtitle, icon: icon, item: song)
             models.append(model)
         }
         mainTableView.reloadData()
@@ -85,5 +87,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        let systemPlayer = MPMusicPlayerController.systemMusicPlayer
     }
 }
