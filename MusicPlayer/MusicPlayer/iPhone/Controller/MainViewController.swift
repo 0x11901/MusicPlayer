@@ -91,8 +91,17 @@ extension MainViewController: UITableViewDelegate {
         if let songs = self.songs {
             let systemPlayer = MPMusicPlayerController.systemMusicPlayer
             systemPlayer.setQueue(with: songs)
-            systemPlayer.play()
+            systemPlayer.nowPlayingItem = (tableView.cellForRow(at: indexPath) as! AudioTableViewCell).model?.item
+            if #available(iOS 10.1, *) {
+                systemPlayer.prepareToPlay { error in
+                    if error == nil {
+                        systemPlayer.play()
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+                systemPlayer.play()
+            }
         }
-
     }
 }
