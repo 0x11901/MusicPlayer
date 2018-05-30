@@ -24,7 +24,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q8r-9m-c5V">
-                                <rect key="frame" x="375" y="667" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioCellReuseID" rowHeight="96" id="cqr-9s-p2i" customClass="AudioTableViewCell" customModule="MusicPlayer" customModuleProvider="target">
@@ -92,9 +92,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5Sh-eF-Q4O"/>
+                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Sh-eF-Q4O"/>
                             <constraint firstItem="Q8r-9m-c5V" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="HmF-uq-Ews"/>
-                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="HpJ-ny-TQR"/>
+                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HpJ-ny-TQR"/>
                             <constraint firstItem="Isr-Bf-cx3" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="U7T-nq-wsR"/>
                             <constraint firstItem="Q8r-9m-c5V" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="WfC-Qj-9w0"/>
                             <constraint firstItem="Isr-Bf-cx3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WzP-qg-qAz"/>
