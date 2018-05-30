@@ -18,8 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxN-Jn-S6g">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q8r-9m-c5V">
-                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                                <rect key="frame" x="375" y="667" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioCellReuseID" rowHeight="96" id="cqr-9s-p2i" customClass="AudioTableViewCell" customModule="MusicPlayer" customModuleProvider="target">
@@ -87,14 +92,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="DGf-3o-gZG"/>
+                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5Sh-eF-Q4O"/>
+                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="HmF-uq-Ews"/>
+                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="HpJ-ny-TQR"/>
                             <constraint firstItem="Isr-Bf-cx3" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="U7T-nq-wsR"/>
+                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="WfC-Qj-9w0"/>
                             <constraint firstItem="Isr-Bf-cx3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WzP-qg-qAz"/>
                             <constraint firstItem="Isr-Bf-cx3" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="d5d-2z-Yp8"/>
-                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="e4V-Az-faW"/>
                             <constraint firstItem="Isr-Bf-cx3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="e7u-WH-6Gy"/>
-                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="etl-7S-Qha"/>
-                            <constraint firstItem="Q8r-9m-c5V" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="pmi-SY-qzN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
