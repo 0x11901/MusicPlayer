@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,28 +86,63 @@
                                 </constraints>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rRr-Qp-c7v">
-                                <rect key="frame" x="-0.5" y="539" width="375" height="128"/>
+                                <rect key="frame" x="-0.5" y="603" width="375" height="64"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bck-ow-AHW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8r9-HI-e7G">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="NI5-Vm-rn2">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <vibrancyEffect>
                                                 <blurEffect style="light"/>
                                             </vibrancyEffect>
                                         </visualEffectView>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlG-iO-ZJ5">
+                                            <rect key="frame" x="13.5" y="23" width="8" height="18"/>
+                                            <state key="normal" image="OCWBack_8x16_"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-SE-Mb1">
+                                            <rect key="frame" x="101.5" y="14" width="36" height="36"/>
+                                            <state key="normal" image="OCWSeekBack30_36x36_"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjP-VJ-wSH">
+                                            <rect key="frame" x="170" y="18" width="35" height="28"/>
+                                            <state key="normal" image="OCWPlay_35x28_"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmv-16-fBp">
+                                            <rect key="frame" x="237.5" y="14" width="36" height="36"/>
+                                            <state key="normal" image="OCWSeekForward30_36x36_"/>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YhI-QO-CdT">
+                                            <rect key="frame" x="314.5" y="9" width="46" height="46"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="46" id="7Ga-ku-5HZ"/>
+                                                <constraint firstAttribute="height" constant="46" id="lO1-lc-xsu"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="YhI-QO-CdT" firstAttribute="centerX" secondItem="Bck-ow-AHW" secondAttribute="centerX" multiplier="1.8" id="3py-4s-cHN"/>
+                                        <constraint firstItem="YlG-iO-ZJ5" firstAttribute="centerX" secondItem="Bck-ow-AHW" secondAttribute="centerX" multiplier="0.09375" id="5rS-Bb-ZjH"/>
+                                        <constraint firstItem="5PI-SE-Mb1" firstAttribute="centerX" secondItem="Bck-ow-AHW" secondAttribute="centerX" multiplier="0.6375" id="Ic5-VZ-LBs"/>
+                                        <constraint firstItem="gmv-16-fBp" firstAttribute="centerY" secondItem="Bck-ow-AHW" secondAttribute="centerY" id="OF1-AQ-Sni"/>
+                                        <constraint firstItem="YhI-QO-CdT" firstAttribute="centerY" secondItem="Bck-ow-AHW" secondAttribute="centerY" id="Oug-aM-XJh"/>
+                                        <constraint firstItem="YlG-iO-ZJ5" firstAttribute="centerY" secondItem="Bck-ow-AHW" secondAttribute="centerY" id="PYn-yC-0F9"/>
+                                        <constraint firstItem="gmv-16-fBp" firstAttribute="centerX" secondItem="Bck-ow-AHW" secondAttribute="centerX" multiplier="1.3625" id="TES-rV-JCg"/>
+                                        <constraint firstItem="sjP-VJ-wSH" firstAttribute="centerX" secondItem="Bck-ow-AHW" secondAttribute="centerX" id="ki5-GG-Gfv"/>
+                                        <constraint firstItem="5PI-SE-Mb1" firstAttribute="centerY" secondItem="Bck-ow-AHW" secondAttribute="centerY" id="u8P-S9-39s"/>
+                                        <constraint firstItem="sjP-VJ-wSH" firstAttribute="centerY" secondItem="Bck-ow-AHW" secondAttribute="centerY" id="wXP-pt-hJs"/>
+                                    </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="ceI-Ae-mcQ"/>
+                                    <constraint firstAttribute="height" constant="64" id="ceI-Ae-mcQ"/>
                                 </constraints>
-                                <blurEffect style="extraLight"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,5 +173,9 @@
     </scenes>
     <resources>
         <image name="OCLaunchLogo_96x96_" width="96" height="96"/>
+        <image name="OCWBack_8x16_" width="8" height="16"/>
+        <image name="OCWPlay_35x28_" width="35" height="28"/>
+        <image name="OCWSeekBack30_36x36_" width="36" height="36"/>
+        <image name="OCWSeekForward30_36x36_" width="36" height="36"/>
     </resources>
 </document>
