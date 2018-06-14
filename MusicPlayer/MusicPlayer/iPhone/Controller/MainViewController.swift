@@ -11,6 +11,9 @@ let audioCellReuseID = "audioCellReuseID"
 class MainViewController: UIViewController {
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet var noDataView: UIView!
+
+    @IBOutlet var cover: UIImageView!
+
     var models: [AudioModel] = []
     var songs: MPMediaQuery?
 
@@ -91,7 +94,8 @@ extension MainViewController: UITableViewDelegate {
         if let songs = self.songs {
             let systemPlayer = MPMusicPlayerController.systemMusicPlayer
             systemPlayer.setQueue(with: songs)
-            systemPlayer.nowPlayingItem = (tableView.cellForRow(at: indexPath) as! AudioTableViewCell).model?.item
+            let model = (tableView.cellForRow(at: indexPath) as! AudioTableViewCell).model
+            systemPlayer.nowPlayingItem = model?.item
             if #available(iOS 10.1, *) {
                 systemPlayer.prepareToPlay { error in
                     if error == nil {
@@ -102,6 +106,8 @@ extension MainViewController: UITableViewDelegate {
                 // Fallback on earlier versions
                 systemPlayer.play()
             }
+
+            cover.image = model?.icon
         }
     }
 }
