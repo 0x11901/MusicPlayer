@@ -3,4 +3,4 @@ project(Winner)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(untitled main.cpp Judge.cpp Judge.h WinnerPokerCommon.cpp WinnerPokerCommon.h Ruler.cpp Ruler.h)
+add_executable(Winner main.cpp)
