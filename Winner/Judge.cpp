@@ -514,7 +514,7 @@ std::vector<std::vector<size_t>> Judge::combination(const std::vector<size_t> &n
     if (n.empty() || k > n.size()) return ret;
 
     auto copy = n;
-    std::sort(copy.begin(), copy.end(), [](size_t x, size_t y) { return x > y; });
+    std::sort(copy.begin(), copy.end());
 
     std::vector<std::vector<size_t>> node(1);
     auto                             last = copy[0];
@@ -685,7 +685,7 @@ std::tuple<bool, HandsCategoryModel> Judge::isTrioChain(const std::unordered_map
         }
         if (vector.size() > 1)
         {
-            std::sort(vector.begin(), vector.end(), [](size_t x, size_t y) { return x > y; });
+            std::sort(vector.begin(), vector.end());
             auto count = vector.size();
             for (ssize_t i = 0; i < count - 1; ++i)
             {
@@ -898,6 +898,7 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::uno
             t.push_back(rank.first);
         }
 
+        std::sort(t.begin(), t.end());
         if (!isContainsTarget(t)) return;
 
         ssize_t size = t.size();
@@ -970,7 +971,7 @@ void Judge::enumeratePairChain(std::vector<std::vector<size_t>> &        ret,
                 auto n = j - i + 1;
                 if (n < 2) continue;
 
-                if (isContinuous(t))
+                if (isContinuous(t[i], t[j], n))
                 {
                     temp.clear();
 
@@ -1584,7 +1585,7 @@ std::vector<std::vector<size_t>> Judge::cardIntentions(const std::vector<size_t>
                                                                      : *std::min_element(values.begin(), values.end());
 
     // FIXME:  按默认方式排序，可能和摆牌方式冲突，待摆牌完成后看是否需要处理
-    std::sort(values.begin(), values.end(), [](size_t x, size_t y) { return x > y; });
+    std::sort(values.begin(), values.end());
 
     auto ranks = zip(values);
 
@@ -1614,7 +1615,7 @@ std::vector<std::vector<size_t>> Judge::cardHint(const std::vector<size_t> &hand
     auto values = getCardRanks(hands);
 
     // FIXME:  按默认方式排序，可能和摆牌方式冲突，待摆牌完成后看是否需要处理
-    std::sort(values.begin(), values.end(), [](size_t x, size_t y) { return x > y; });
+    std::sort(values.begin(), values.end());
 
     auto ranks = zip(values);
     auto copy  = filterBombs(ranks);
