@@ -1015,6 +1015,8 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
             }
         }
 
+        std::sort(t.begin(), t.end());
+
         auto    isAlwaysWithPair = Ruler::getInstance().isAlwaysWithPair();
         ssize_t size             = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
@@ -1045,6 +1047,10 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
 
                     // 三顺带一
                     auto others = ranksCopy;
+                    for (auto &&other : others) {
+                        std::cout << other.first << std::endl;
+                        std::cout << other.second << std::endl;
+                    }
                     for (ssize_t k = i; k <= j; ++k)
                     {
                         others.erase(t[k]);
