@@ -504,7 +504,7 @@ bool Judge::isContainsTarget(const std::vector<size_t> &temp) const
 
 bool Judge::canSplit3(const std::unordered_map<size_t, size_t> &others) const
 {
-    return others.find(牌型3) != others.end() && others.at(牌型3) > 2;
+    return !(others.find(牌型3) != others.end() && others.at(牌型3) > 2);
 }
 
 std::vector<std::vector<size_t>> Judge::combination(const std::vector<size_t> &n, ssize_t k) const
@@ -1003,13 +1003,13 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
         std::vector<size_t> temp;
         std::vector<size_t> t;
 
-        auto canSplitBomb = Ruler::getInstance().isBombDetachable();
+        auto isBombDetachable = Ruler::getInstance().isBombDetachable();
 
         auto ranksCopy = filterA(ranks);
 
         for (const auto &rank : ranksCopy)
         {
-            if (canSplitBomb ? rank.second > 2 : rank.second == 3)
+            if (isBombDetachable ? rank.second > 2 : rank.second == 3)
             {
                 t.push_back(rank.first);
             }
@@ -1047,13 +1047,16 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
 
                     // 三顺带一
                     auto others = ranksCopy;
-                    for (auto &&other : others) {
-                        std::cout << other.first << std::endl;
-                        std::cout << other.second << std::endl;
-                    }
                     for (ssize_t k = i; k <= j; ++k)
                     {
-                        others.erase(t[k]);
+                        if (isBombDetachable && others[t[k]] == 4)
+                        {
+                            others[t[k]] = 1;
+                        }
+                        else
+                        {
+                            others.erase(t[k]);
+                        }
                     }
 
                     // 如果最小牌是3且有三张3时，3不可拆牌
