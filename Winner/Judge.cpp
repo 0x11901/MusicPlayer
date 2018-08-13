@@ -588,6 +588,7 @@ std::vector<std::vector<size_t>> Judge::restoreHands(const std::vector<std::vect
     for (const auto &v : ret)
     {
         std::unordered_set<size_t> unordered_set;
+        temp2.clear();
         for (const auto &item : v)
         {
             auto iterator = ranksMultimap.find(item);

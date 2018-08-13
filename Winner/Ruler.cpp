@@ -15,7 +15,7 @@ PAGAMES_WINNER_POKER_BEGIN
 Ruler::Ruler()
 {
     _isAlwaysWithPair     = false;
-    _isBombDetachable     = true;
+    _isBombDetachable     = false;
     _isAsTrioAceBomb      = false;
     _isAsTrioAceBomb      = false;
     _isThreeOfHeartsFirst = false;
