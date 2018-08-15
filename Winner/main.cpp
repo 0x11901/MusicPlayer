@@ -47,9 +47,9 @@ std::vector<size_t> test(const std::vector<size_t> &t)
 int main()
 {
     // std::vector<size_t> hands = { 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7 };
-    // std::vector<size_t> hands = {3, 4, 5, 6, 7, 8, 9, 10, 11};
+    std::vector<size_t> hands = { 3, 3, 4, 6, 6, 7, 8, 10, 10, 11, 12, 13, 13, 14, 15 };
     // std::vector<size_t> hands = { 3, 3, 4, 4, 5, 5, 7, 7 };
-    std::vector<size_t> hands = { 3, 4, 5, 5, 5, 7, 7, 8, 9, 10, 14, 14, 14 };
+    // std::vector<size_t> hands = {3, 4, 5, 5, 5, 5, 7, 7, 8, 9, 10};
 
     auto              ret = Judge::getInstance().cardIntentions(test(hands));
     std::stringstream ss;

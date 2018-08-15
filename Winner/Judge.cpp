@@ -764,10 +764,13 @@ void Judge::enumerate(std::vector<std::vector<size_t>> &ret, const std::unordere
 
 void Judge::enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
 {
-    auto                temp = filter3(ranks, canSplit3(ranks));
-    std::vector<size_t> vector;
-    vector.push_back(*std::min_element(temp.begin(), temp.end()));
-    ret.push_back(vector);
+    auto temp = filter3(ranks, canSplit3(ranks));
+    if (!temp.empty())
+    {
+        std::vector<size_t> vector;
+        vector.push_back(*std::min_element(temp.begin(), temp.end()));
+        ret.push_back(vector);
+    }
 }
 
 void Judge::enumeratePair(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
@@ -807,7 +810,9 @@ void Judge::enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::unor
     for (const auto &rank : ranksCopy)
     {
         std::vector<size_t> temp;
-        if (canSplitBomb ? rank.second > 2 : rank.second == 3)
+        // FIXME: 如果可以四带自然也能三带，此处不知道如何操作
+        // if (canSplitBomb ? rank.second > 2 : rank.second == 3)
+        if (rank.second == 3)
         {
             //三不带
             temp.clear();
@@ -914,7 +919,6 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::uno
                 {
                     temp.clear();
 
-                    // FIXME: 此处已经假设数组是有序的
                     for (ssize_t k = i; k <= j; ++k)
                     {
                         temp.push_back(t[k]);
