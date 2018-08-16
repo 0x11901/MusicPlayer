@@ -110,6 +110,8 @@ public:
 
 private:
 #pragma mark - 私有变量
+    /** 持有上一圈的牌型，用以判断能否跟牌和提示跟牌 */
+    CurrentHandsCategory _lastHandsCategory{};
     /** 持有这一圈的牌型，用以判断能否跟牌和提示跟牌 */
     CurrentHandsCategory _currentHandsCategory{};
 

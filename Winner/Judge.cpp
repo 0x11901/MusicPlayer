@@ -197,7 +197,7 @@ HandsCategoryModel Judge::judgeHandsCategory(const std::vector<size_t> &hands) c
     {
         model.handsCategory = HandsCategory::连对;
         // OPTIMIZE: 待优化
-        std::vector<size_t> v{};
+        std::vector<size_t> v;
         v.reserve(ranks.size());
         for (const auto &rank : ranks)
         {
@@ -811,8 +811,7 @@ void Judge::enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::unor
     {
         std::vector<size_t> temp;
         // FIXME: 如果可以四带自然也能三带，此处不知道如何操作
-        // if (canSplitBomb ? rank.second > 2 : rank.second == 3)
-        if (rank.second == 3)
+        if (canSplitBomb ? rank.second > 2 : rank.second == 3)
         {
             //三不带
             temp.clear();
@@ -1568,14 +1567,26 @@ void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::unorde
 
 bool Judge::needRecalculate(const std::vector<size_t> &newer, std::vector<size_t> &older)
 {
-    auto copy = newer;
-    // OPTIMIZE: 待优化
-    std::sort(copy.begin(), copy.end());
-    auto b = copy == older;
-    if (!b)
+    const auto &x = _lastHandsCategory.handsCategory;
+    const auto &y = _currentHandsCategory.handsCategory;
+    auto        b = true;
+
+    if (x.handsCategory != y.handsCategory || x.size != y.size || x.weight != y.weight)
     {
-        older = copy;
+        Judge::_lastHandsCategory = Judge::_currentHandsCategory;
     }
+    else
+    {
+        auto copy = newer;
+        // OPTIMIZE: 待优化
+        std::sort(copy.begin(), copy.end());
+        b = copy == older;
+        if (!b)
+        {
+            older = copy;
+        }
+    }
+
     return b;
 }
 
