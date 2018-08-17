@@ -307,7 +307,7 @@ std::vector<size_t> Judge::intentions(const std::vector<size_t> &hands, bool isS
         23. 344555566，提示3； （炸弹不可拆）
         24. 45667888999QQQQ ，最小牌是4，匹配到飞机，8889994566
      */
-    if (needRecalculate(hands, _handsIntentions))
+    if (needRecalculate(hands, _handsIntentions, true))
     {
         _cardIntentions     = cardIntentions(hands, isStartingHand);
         _iteratorIntentions = _cardIntentions.begin();
@@ -327,7 +327,7 @@ std::vector<size_t> Judge::intentions(const std::vector<size_t> &hands, bool isS
 std::vector<size_t> Judge::hint(const std::vector<size_t> &hands)
 {
     // 给出符合牌型的所有组合，不考虑拆牌情况
-    if (needRecalculate(hands, _handsHint))
+    if (needRecalculate(hands, _handsHint, false))
     {
         _cardHint     = cardHint(hands);
         _iteratorHint = _cardHint.begin();
@@ -1565,25 +1565,38 @@ void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::unorde
     }
 }
 
-bool Judge::needRecalculate(const std::vector<size_t> &newer, std::vector<size_t> &older)
+bool Judge::needRecalculate(const std::vector<size_t> &newer, std::vector<size_t> &older, bool isIgnoreHandsCategory)
 {
     const auto &x = _lastHandsCategory.handsCategory;
     const auto &y = _currentHandsCategory.handsCategory;
     auto        b = true;
 
-    if (x.handsCategory != y.handsCategory || x.size != y.size || x.weight != y.weight)
+    // OPTIMIZE: 待优化
+    if (isIgnoreHandsCategory)
     {
-        Judge::_lastHandsCategory = Judge::_currentHandsCategory;
+        auto copy = newer;
+        std::sort(copy.begin(), copy.end());
+        b = copy != older;
+        if (b)
+        {
+            older = copy;
+        }
     }
     else
     {
-        auto copy = newer;
-        // OPTIMIZE: 待优化
-        std::sort(copy.begin(), copy.end());
-        b = copy == older;
-        if (!b)
+        if (x.handsCategory != y.handsCategory || x.size != y.size || x.weight != y.weight)
         {
-            older = copy;
+            Judge::_lastHandsCategory = Judge::_currentHandsCategory;
+        }
+        else
+        {
+            auto copy = newer;
+            std::sort(copy.begin(), copy.end());
+            b = copy != older;
+            if (b)
+            {
+                older = copy;
+            }
         }
     }
 

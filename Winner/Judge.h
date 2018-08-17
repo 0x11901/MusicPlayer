@@ -244,7 +244,7 @@ private:
 
     void appendBombs(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
 
-    bool needRecalculate(const std::vector<size_t> &newer, std::vector<size_t> &older);
+    bool needRecalculate(const std::vector<size_t> &newer, std::vector<size_t> &older, bool isIgnoreHandsCategory);
 
 public:
     std::vector<std::vector<size_t>> cardIntentions(const std::vector<size_t> &hands, bool isStartingHand = false);

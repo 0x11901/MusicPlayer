@@ -18,7 +18,7 @@ std::vector<size_t> test(const std::vector<size_t> &t)
     ss.seekp(-2, ss.end);
     ss << " }" << std::endl;
 
-    //std::cout << ss.str();
+    // std::cout << ss.str();
 
     std::vector<size_t> vector;
     auto                zip = Judge::getInstance().zip(t);
@@ -39,7 +39,7 @@ std::vector<size_t> test(const std::vector<size_t> &t)
     ss.seekp(-2, ss.end);
     ss << " }" << std::endl;
 
-    //std::cout << ss.str();
+    // std::cout << ss.str();
 
     return vector;
 }
@@ -86,7 +86,7 @@ int main()
     }
      */
 
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 24; ++i)
     {
         const auto &ret = Judge::getInstance().intentions(test(hands));
 
@@ -96,7 +96,7 @@ int main()
         ss << "{ ";
         for (auto &&item : ret)
         {
-            ss << item << ", ";
+            ss << (item >> 8) << ", ";
         }
         ss.seekp(-2, ss.end);
         ss << " }" << std::endl;
