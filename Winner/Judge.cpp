@@ -474,7 +474,7 @@ std::unordered_map<size_t, size_t> Judge::filterA(const std::unordered_map<size_
     auto ranksCopy = ranks;
     if (!Ruler::getInstance().isBombDetachable() && Ruler::getInstance().isAsTrioAceBomb())
     {
-        if (ranksCopy.find(牌型A) != ranksCopy.end() && ranksCopy.at(牌型A) == 3)
+        if (ranks.find(牌型A) != ranks.end() && ranks.at(牌型A) == 3)
         {
             ranksCopy.erase(牌型A);
         }
@@ -487,7 +487,7 @@ std::unordered_map<size_t, size_t> Judge::filterConventionalBomb(const std::unor
     auto ranksCopy = ranks;
     if (!Ruler::getInstance().isBombDetachable())
     {
-        for (const auto &copy : ranksCopy)
+        for (const auto &copy : ranks)
         {
             if (copy.second == 4)
             {
@@ -1558,7 +1558,7 @@ void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::unorde
             temp.clear();
             for (int i = 0; i < 4; ++i)
             {
-                temp.push_back(rank.second);
+                temp.push_back(rank.first);
             }
 
             ret.push_back(temp);
@@ -1566,10 +1566,12 @@ void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::unorde
     }
     if (Ruler::getInstance().isAsTrioAceBomb() && ranks.find(牌型A) != ranks.end() && ranks.at(牌型A) == 3)
     {
+        temp.clear();
         for (int i = 0; i < 3; ++i)
         {
             temp.push_back(牌型A);
         }
+        ret.push_back(temp);
     }
 }
 
