@@ -311,7 +311,6 @@ std::vector<size_t> Judge::intentions(const std::vector<size_t> &hands, bool isS
     {
         _cardIntentions     = cardIntentions(hands, isStartingHand);
         _iteratorIntentions = _cardIntentions.begin();
-        return *_iteratorIntentions++;
     }
     else
     {
@@ -320,8 +319,13 @@ std::vector<size_t> Judge::intentions(const std::vector<size_t> &hands, bool isS
             _iteratorIntentions = _cardIntentions.begin();
             return std::vector<size_t>{};
         }
-        return *_iteratorIntentions++;
     }
+
+    if (_cardIntentions.empty())
+    {
+        return std::vector<size_t>{};
+    }
+    return *_iteratorIntentions++;
 }
 
 std::vector<size_t> Judge::hint(const std::vector<size_t> &hands)
@@ -331,7 +335,6 @@ std::vector<size_t> Judge::hint(const std::vector<size_t> &hands)
     {
         _cardHint     = cardHint(hands);
         _iteratorHint = _cardHint.begin();
-        return *_iteratorHint++;
     }
     else
     {
@@ -340,8 +343,13 @@ std::vector<size_t> Judge::hint(const std::vector<size_t> &hands)
             _iteratorHint = _cardHint.begin();
             return std::vector<size_t>{};
         }
-        return *_iteratorHint++;
     }
+
+    if (_cardHint.empty())
+    {
+        return std::vector<size_t>{};
+    }
+    return *_iteratorHint++;
 }
 
 #pragma mark - 转换手牌
@@ -1587,6 +1595,9 @@ bool Judge::needRecalculate(const std::vector<size_t> &newer, std::vector<size_t
         if (x.handsCategory != y.handsCategory || x.size != y.size || x.weight != y.weight)
         {
             Judge::_lastHandsCategory = Judge::_currentHandsCategory;
+            auto copy                 = newer;
+            std::sort(copy.begin(), copy.end());
+            older = copy;
         }
         else
         {
