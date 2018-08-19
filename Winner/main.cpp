@@ -55,7 +55,7 @@ int main()
         3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 10, 10, 10, 10, 14, 14, 14
     };
 
-    std::vector<size_t> tv = { 4 };
+    std::vector<size_t> tv = { 4,4,4 };
     Judge::getInstance().setCurrentHandsCategory(test(tv));
 
     /*

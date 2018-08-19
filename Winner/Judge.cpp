@@ -60,6 +60,10 @@ HandsCategoryModel Judge::judgeHandsCategory(const std::vector<size_t> &hands) c
     }
 
     std::unordered_map<size_t, size_t> ranks = zip(vector);
+    for (auto &&item : ranks) {
+        std::cout << item.first << std::endl;
+        std::cout << item.second << std::endl;
+    }
 
     if (isSame(ranks, 对子))
     {
@@ -621,6 +625,13 @@ std::vector<std::vector<size_t>> Judge::restoreHands(const std::vector<std::vect
 bool Judge::isSame(const std::unordered_map<size_t, size_t> &ranks, const std::string &category) const
 {
     auto t = zip(category);
+    for (auto &&item2 : t) {
+        std::cout << item2.first << std::endl;
+        std::cout << item2.second << std::endl;
+    }
+    std::cout << ranks.size() << std::endl;
+    std::cout << t.size() << std::endl;
+
     if (ranks.size() == t.size())
     {
         std::unordered_set<size_t> s1{};
