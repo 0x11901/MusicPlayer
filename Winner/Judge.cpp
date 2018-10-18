@@ -127,7 +127,7 @@ HandsCategoryModel Judge::judgeHandsCategory(const std::vector<size_t> &hands) c
         return model;
     }
 
-    std::unordered_map<size_t, size_t> ranks = zip(vector);
+    std::map<size_t, size_t> ranks = zip(vector);
 
     if (size == 2 && isSame(ranks, duiZi))
     {
@@ -692,10 +692,10 @@ std::vector<size_t> Judge::getCardRanks(const std::vector<size_t> &hands) const
     return t;
 }
 
-template <typename T> std::unordered_map<size_t, size_t> Judge::zip(const T &t) const
+template <typename T> std::map<size_t, size_t> Judge::zip(const T &t) const
 {
-    std::vector<size_t>                unique;
-    std::unordered_map<size_t, size_t> map;
+    std::vector<size_t>      unique;
+    std::map<size_t, size_t> map;
     std::unique_copy(t.begin(), t.end(), std::back_inserter(unique));
     for (size_t u : unique)
     {
@@ -705,7 +705,7 @@ template <typename T> std::unordered_map<size_t, size_t> Judge::zip(const T &t) 
     return map;
 }
 
-std::vector<size_t> Judge::unzip(const std::unordered_map<size_t, size_t> &zipped) const
+std::vector<size_t> Judge::unzip(const std::map<size_t, size_t> &zipped) const
 {
     std::vector<size_t> vector;
     for (const auto &item : zipped)
@@ -718,7 +718,7 @@ std::vector<size_t> Judge::unzip(const std::unordered_map<size_t, size_t> &zippe
     return vector;
 }
 
-std::vector<size_t> Judge::unzip(const std::unordered_map<size_t, size_t> &zipped, size_t ignore) const
+std::vector<size_t> Judge::unzip(const std::map<size_t, size_t> &zipped, size_t ignore) const
 {
     std::vector<size_t> vector;
 
@@ -739,7 +739,7 @@ std::vector<size_t> Judge::unzip(const std::unordered_map<size_t, size_t> &zippe
     return vector;
 }
 
-std::vector<size_t> Judge::filter3(const std::unordered_map<size_t, size_t> &others, bool canSplit3) const
+std::vector<size_t> Judge::filter3(const std::map<size_t, size_t> &others, bool canSplit3) const
 {
     if (canSplit3)
         return unzip(others);
@@ -747,7 +747,7 @@ std::vector<size_t> Judge::filter3(const std::unordered_map<size_t, size_t> &oth
         return unzip(others, paiXing3);
 }
 
-std::unordered_map<size_t, size_t> Judge::filterA(const std::unordered_map<size_t, size_t> &ranks) const
+std::map<size_t, size_t> Judge::filterA(const std::map<size_t, size_t> &ranks) const
 {
     auto ranksCopy = ranks;
     if (!Ruler::getInstance().isBombDetachable() && Ruler::getInstance().isAsTrioAceBomb())
@@ -760,7 +760,7 @@ std::unordered_map<size_t, size_t> Judge::filterA(const std::unordered_map<size_
     return ranksCopy;
 }
 
-std::unordered_map<size_t, size_t> Judge::filterConventionalBomb(const std::unordered_map<size_t, size_t> &ranks) const
+std::map<size_t, size_t> Judge::filterConventionalBomb(const std::map<size_t, size_t> &ranks) const
 {
     auto ranksCopy = ranks;
     if (!Ruler::getInstance().isBombDetachable())
@@ -776,14 +776,14 @@ std::unordered_map<size_t, size_t> Judge::filterConventionalBomb(const std::unor
     return ranksCopy;
 }
 
-std::unordered_map<size_t, size_t> Judge::filterBombs(const std::unordered_map<size_t, size_t> &ranks) const
+std::map<size_t, size_t> Judge::filterBombs(const std::map<size_t, size_t> &ranks) const
 {
     auto copy = filterA(ranks);
     copy      = filterConventionalBomb(copy);
     return copy;
 }
 
-std::unordered_map<size_t, size_t> Judge::filterFour(const std::unordered_map<size_t, size_t> &ranks) const
+std::map<size_t, size_t> Judge::filterFour(const std::map<size_t, size_t> &ranks) const
 {
     auto copy = ranks;
     for (const auto &item : ranks)
@@ -842,7 +842,7 @@ bool Judge::isContainsBombs(const std::vector<size_t> &hands) const
     return false;
 }
 
-bool Judge::canSplit3(const std::unordered_map<size_t, size_t> &others) const
+bool Judge::canSplit3(const std::map<size_t, size_t> &others) const
 {
     return !(others.find(paiXing3) != others.end() && others.at(paiXing3) > 2);
 }
@@ -1019,7 +1019,7 @@ std::vector<std::vector<size_t>> Judge::restoreHands(const std::vector<std::vect
     return temp1;
 }
 
-bool Judge::isSame(const std::unordered_map<size_t, size_t> &ranks, const std::string &category) const
+bool Judge::isSame(const std::map<size_t, size_t> &ranks, const std::string &category) const
 {
     auto t = zip(category);
     if (ranks.size() == t.size())
@@ -1054,7 +1054,7 @@ bool Judge::isContinuous(size_t a_1, size_t a_n, size_t n) const
     return a_n - a_1 == (n - 1) * 1;
 }
 
-bool Judge::isChain(const std::unordered_map<size_t, size_t> &ranks) const
+bool Judge::isChain(const std::map<size_t, size_t> &ranks) const
 {
     // 顺子中不能有牌型2
     if (ranks.find(paiXing2) != ranks.end()) return false;
@@ -1072,7 +1072,7 @@ bool Judge::isChain(const std::unordered_map<size_t, size_t> &ranks) const
     return false;
 }
 
-bool Judge::isPairChain(const std::unordered_map<size_t, size_t> &ranks) const
+bool Judge::isPairChain(const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.size() >= 2)
     {
@@ -1087,7 +1087,7 @@ bool Judge::isPairChain(const std::unordered_map<size_t, size_t> &ranks) const
     return false;
 }
 
-std::tuple<bool, HandsCategoryModel> Judge::isTrioChain(const std::unordered_map<size_t, size_t> &ranks) const
+std::tuple<bool, HandsCategoryModel> Judge::isTrioChain(const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.size() >= 2)
     {
@@ -1190,7 +1190,7 @@ size_t Judge::getTrioChainWeight(const std::vector<size_t> &hands, HandsCategory
     return temp[m];
 }
 
-void Judge::enumerate(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumerate(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     // AAA在作为💣且💣不可拆时不能拆开
 
@@ -1228,7 +1228,7 @@ void Judge::enumerate(std::vector<std::vector<size_t>> &ret, const std::unordere
     // exit(1024);
 }
 
-void Judge::enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     auto                temp = filter3(ranks, canSplit3(ranks));
     std::vector<size_t> vector;
@@ -1247,7 +1247,7 @@ void Judge::enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::unor
     }
 }
 
-void Judge::enumeratePair(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumeratePair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.empty() || !canSplit3(ranks)) return;
 
@@ -1272,7 +1272,7 @@ void Judge::enumeratePair(std::vector<std::vector<size_t>> &ret, const std::unor
     }
 }
 
-void Judge::enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.empty()) return;
 
@@ -1314,7 +1314,7 @@ void Judge::enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::unor
     }
 }
 
-void Judge::enumerateFour(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumerateFour(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.empty()) return;
     if (!Ruler::getInstance().isBombDetachable()) return;
@@ -1353,7 +1353,7 @@ void Judge::enumerateFour(std::vector<std::vector<size_t>> &ret, const std::unor
     }
 }
 
-void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.size() < 5) return;
 
@@ -1415,8 +1415,7 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::uno
     }
 }
 
-void Judge::enumeratePairChain(std::vector<std::vector<size_t>> &        ret,
-                               const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumeratePairChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     // 连对
     // 连对中必须包括牌型中最小的那张牌
@@ -1471,8 +1470,7 @@ void Judge::enumeratePairChain(std::vector<std::vector<size_t>> &        ret,
     }
 }
 
-void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
-                               const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.size() > 2)
     {
@@ -1553,7 +1551,7 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
     }
 }
 
-void Judge::exhaustiveSolo(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustiveSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -1571,7 +1569,7 @@ void Judge::exhaustiveSolo(std::vector<std::vector<size_t>> &ret, const std::uno
     }
 }
 
-void Judge::exhaustivePair(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustivePair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -1590,7 +1588,7 @@ void Judge::exhaustivePair(std::vector<std::vector<size_t>> &ret, const std::uno
     }
 }
 
-void Judge::exhaustiveTrio(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustiveTrio(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -1610,8 +1608,7 @@ void Judge::exhaustiveTrio(std::vector<std::vector<size_t>> &ret, const std::uno
     }
 }
 
-void Judge::exhaustiveTrioWithSolo(std::vector<std::vector<size_t>> &        ret,
-                                   const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustiveTrioWithSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -1636,8 +1633,7 @@ void Judge::exhaustiveTrioWithSolo(std::vector<std::vector<size_t>> &        ret
     }
 }
 
-void Judge::exhaustiveTrioWithPair(std::vector<std::vector<size_t>> &        ret,
-                                   const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustiveTrioWithPair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -1677,7 +1673,7 @@ void Judge::exhaustiveTrioWithPair(std::vector<std::vector<size_t>> &        ret
     }
 }
 
-void Judge::exhaustiveChain(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustiveChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto length = _currentHandsCategory.handsCategory.size;
     auto weight = _currentHandsCategory.handsCategory.weight;
@@ -1723,8 +1719,7 @@ void Judge::exhaustiveChain(std::vector<std::vector<size_t>> &ret, const std::un
     }
 }
 
-void Judge::exhaustivePairChain(std::vector<std::vector<size_t>> &        ret,
-                                const std::unordered_map<size_t, size_t> &copy) const
+void Judge::exhaustivePairChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &copy) const
 {
     auto length = _currentHandsCategory.handsCategory.size;
     auto weight = _currentHandsCategory.handsCategory.weight;
@@ -1773,8 +1768,7 @@ void Judge::exhaustivePairChain(std::vector<std::vector<size_t>> &        ret,
     }
 }
 
-void Judge::exhaustiveTrioChain(std::vector<std::vector<size_t>> &        ret,
-                                const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::exhaustiveTrioChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     if (ranks.size() > 2)
     {
@@ -1820,8 +1814,8 @@ void Judge::exhaustiveTrioChain(std::vector<std::vector<size_t>> &        ret,
     }
 }
 
-void Judge::exhaustiveTrioChainWithSolo(std::vector<std::vector<size_t>> &        ret,
-                                        const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::exhaustiveTrioChainWithSolo(std::vector<std::vector<size_t>> &ret,
+                                        const std::map<size_t, size_t> &  ranks) const
 {
     if (ranks.size() > 2)
     {
@@ -1875,8 +1869,8 @@ void Judge::exhaustiveTrioChainWithSolo(std::vector<std::vector<size_t>> &      
     }
 }
 
-void Judge::exhaustiveTrioChainWithPair(std::vector<std::vector<size_t>> &        ret,
-                                        const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::exhaustiveTrioChainWithPair(std::vector<std::vector<size_t>> &ret,
+                                        const std::map<size_t, size_t> &  ranks) const
 {
     if (ranks.size() > 2)
     {
@@ -1930,8 +1924,7 @@ void Judge::exhaustiveTrioChainWithPair(std::vector<std::vector<size_t>> &      
     }
 }
 
-void Judge::exhaustiveBombs(std::vector<std::vector<size_t>> &        ret,
-                            const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::exhaustiveBombs(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     auto                weight = _currentHandsCategory.handsCategory.weight;
     std::vector<size_t> temp;
@@ -1962,8 +1955,7 @@ void Judge::exhaustiveBombs(std::vector<std::vector<size_t>> &        ret,
     }
 }
 
-void Judge::exhaustiveFourWithSolo(std::vector<std::vector<size_t>> &        ret,
-                                   const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::exhaustiveFourWithSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -1989,8 +1981,7 @@ void Judge::exhaustiveFourWithSolo(std::vector<std::vector<size_t>> &        ret
     }
 }
 
-void Judge::exhaustiveFourWithPair(std::vector<std::vector<size_t>> &        ret,
-                                   const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::exhaustiveFourWithPair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     auto weight = _currentHandsCategory.handsCategory.weight;
 
@@ -2016,7 +2007,7 @@ void Judge::exhaustiveFourWithPair(std::vector<std::vector<size_t>> &        ret
     }
 }
 
-void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     std::vector<size_t> temp;
     std::vector<size_t> t;
@@ -2210,18 +2201,18 @@ std::vector<std::vector<size_t>> Judge::cardHint(const std::vector<size_t> &hand
     return _cardHint;
 }
 
-size_t Judge::getSplitCount(const std::vector<size_t> &hands, const std::unordered_map<size_t, size_t> &ranks) const
+size_t Judge::getSplitCount(const std::vector<size_t> &hands, const std::map<size_t, size_t> &ranks) const
 {
     const auto &zipped = zip(hands);
     return std::accumulate(zipped.begin(),
                            zipped.end(),
                            static_cast<size_t>(0),
-                           [&ranks](size_t $0, const std::unordered_map<size_t, size_t>::value_type &$1) {
+                           [&ranks](size_t $0, const std::map<size_t, size_t>::value_type &$1) {
                                return $0 + ranks.at($1.first) - $1.second;
                            });
 }
 
-void Judge::sortHands(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const
+void Judge::sortHands(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
     sort(ret.begin(), ret.end(), [&](const std::vector<size_t> &x, const std::vector<size_t> &y) {
         auto n = getSplitCount(x, ranks);
@@ -2469,8 +2460,8 @@ bool Judge::canBeat(const std::vector<size_t> &hands) const
     return x.handsCategory == y.handsCategory && x.weight > y.weight;
 }
 
-bool Judge::isKickerRankUnpaired(const HandsCategoryModel &                handsCategoryModel,
-                                 const std::unordered_map<size_t, size_t> &ranks) const
+bool Judge::isKickerRankUnpaired(const HandsCategoryModel &      handsCategoryModel,
+                                 const std::map<size_t, size_t> &ranks) const
 {
     auto copy   = ranks;
     auto weight = handsCategoryModel.weight;

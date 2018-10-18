@@ -14,7 +14,6 @@
 
 #include "WinnerPokerCommon.h"
 #include <map>
-#include <unordered_map>
 #include <vector>
 PAGAMES_WINNER_POKER_BEGIN
 
@@ -191,7 +190,7 @@ public:
      * @return 手牌对应大小到手牌个数的映射
      * @example [1,1,1,2,2,3] -> {{1,3},{2,2},{3,1}}
      */
-    template <typename T> std::unordered_map<size_t, size_t> zip(const T &t) const;
+    template <typename T> std::map<size_t, size_t> zip(const T &t) const;
 
 private:
     /**
@@ -200,7 +199,7 @@ private:
      * @return 手牌对应大小的向量
      * @example {{1,3},{2,2},{3,1}} -> [1,1,1,2,2,3]
      */
-    std::vector<size_t> unzip(const std::unordered_map<size_t, size_t> &zipped) const;
+    std::vector<size_t> unzip(const std::map<size_t, size_t> &zipped) const;
 
     /**
      * 同上，增加忽略某个key的功能
@@ -209,7 +208,7 @@ private:
      * @return 手牌对应大小的向量
      * @example {{1,3},{2,2},{3,1}},1 -> [2,2,3]
      */
-    std::vector<size_t> unzip(const std::unordered_map<size_t, size_t> &zipped, size_t ignore) const;
+    std::vector<size_t> unzip(const std::map<size_t, size_t> &zipped, size_t ignore) const;
 
     /**
      * 忽略掉牌型3并调用unzip
@@ -217,35 +216,35 @@ private:
      * @param canSplit3 能否拆牌牌型3，如果不能拆，那么unzip出来的向量里不会包含牌型3
      * @return 手牌对应大小的向量
      */
-    std::vector<size_t> filter3(const std::unordered_map<size_t, size_t> &others, bool canSplit3) const;
+    std::vector<size_t> filter3(const std::map<size_t, size_t> &others, bool canSplit3) const;
 
     /**
      * 根据牌局规则选在是否要删除映射中的牌型A
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 处理之后的映射，其中牌型A是否存在和薛定谔的猫一样
      */
-    std::unordered_map<size_t, size_t> filterA(const std::unordered_map<size_t, size_t> &ranks) const;
+    std::map<size_t, size_t> filterA(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 删除映射中的普通💣，即四张相同大小的牌
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 处理之后的映射
      */
-    std::unordered_map<size_t, size_t> filterConventionalBomb(const std::unordered_map<size_t, size_t> &ranks) const;
+    std::map<size_t, size_t> filterConventionalBomb(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 根据牌局规则删除映射中的💣，即当三张A算💣且有三张A时，将A也从映射中删除
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 处理之后的映射
      */
-    std::unordered_map<size_t, size_t> filterBombs(const std::unordered_map<size_t, size_t> &ranks) const;
+    std::map<size_t, size_t> filterBombs(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 删除映射中所有💣，不考虑规则
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 处理之后的映射
      */
-    std::unordered_map<size_t, size_t> filterFour(const std::unordered_map<size_t, size_t> &ranks) const;
+    std::map<size_t, size_t> filterFour(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 是否在向量中包含提示中必须包含的牌，提示中必须包含的牌是一个私有成员变量
@@ -266,7 +265,7 @@ private:
      * @param others 手牌对应大小到手牌个数的映射
      * @return 是否可拆
      */
-    bool canSplit3(const std::unordered_map<size_t, size_t> &others) const;
+    bool canSplit3(const std::map<size_t, size_t> &others) const;
 
     /**
      * 从给定个数的元素中取出指定个数的元素，进行组合
@@ -335,7 +334,7 @@ private:
      * @param category 牌型字符串
      * @return 是否是同一种牌型
      */
-    bool isSame(const std::unordered_map<size_t, size_t> &ranks, const std::string &category) const;
+    bool isSame(const std::map<size_t, size_t> &ranks, const std::string &category) const;
 
     /**
      * 判断传入向量是否连续，向量中元素必须先去重
@@ -358,21 +357,21 @@ private:
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 是否是顺子
      */
-    bool isChain(const std::unordered_map<size_t, size_t> &ranks) const;
+    bool isChain(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 是否是连对
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 是否是连对
      */
-    bool isPairChain(const std::unordered_map<size_t, size_t> &ranks) const;
+    bool isPairChain(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 是否是三顺
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return (是否是三顺，三顺的牌型模型)
      */
-    std::tuple<bool, HandsCategoryModel> isTrioChain(const std::unordered_map<size_t, size_t> &ranks) const;
+    std::tuple<bool, HandsCategoryModel> isTrioChain(const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 获取三顺的权重
@@ -387,164 +386,156 @@ private:
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumerate(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumerate(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出单牌，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出对牌，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumeratePair(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumeratePair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出三不带、三带一和三带二，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumerateTrio(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出四不带、四带一和四带二，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumerateFour(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumerateFour(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出顺子，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumerateChain(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumerateChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出连对，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumeratePairChain(std::vector<std::vector<size_t>> &        ret,
-                            const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumeratePairChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的首出三顺，三顺带一和三顺带二，符合产品意图
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void enumerateTrioChain(std::vector<std::vector<size_t>> &        ret,
-                            const std::unordered_map<size_t, size_t> &ranks) const;
+    void enumerateTrioChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出单牌
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveSolo(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出对牌
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustivePair(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustivePair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出三不带
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveTrio(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveTrio(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出三带一
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveTrioWithSolo(std::vector<std::vector<size_t>> &        ret,
-                                const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveTrioWithSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出三带二
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveTrioWithPair(std::vector<std::vector<size_t>> &        ret,
-                                const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveTrioWithPair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出顺子
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveChain(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出连对
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustivePairChain(std::vector<std::vector<size_t>> &        ret,
-                             const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustivePairChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出三顺不带
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveTrioChain(std::vector<std::vector<size_t>> &        ret,
-                             const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveTrioChain(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出三顺带一
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveTrioChainWithSolo(std::vector<std::vector<size_t>> &        ret,
-                                     const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveTrioChainWithSolo(std::vector<std::vector<size_t>> &ret,
+                                     const std::map<size_t, size_t> &  ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出三顺带二
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveTrioChainWithPair(std::vector<std::vector<size_t>> &        ret,
-                                     const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveTrioChainWithPair(std::vector<std::vector<size_t>> &ret,
+                                     const std::map<size_t, size_t> &  ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出💣
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveBombs(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveBombs(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出四带一
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveFourWithSolo(std::vector<std::vector<size_t>> &        ret,
-                                const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveFourWithSolo(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 使用枚举法计算所有可能的跟出四带二
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void exhaustiveFourWithPair(std::vector<std::vector<size_t>> &        ret,
-                                const std::unordered_map<size_t, size_t> &ranks) const;
+    void exhaustiveFourWithPair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 在存放结果的二维向量中追加所有的💣组合
      * @param ret 存放结果的二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void appendBombs(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void appendBombs(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
 public:
     /**
@@ -583,14 +574,14 @@ public:
      * @param ranks 手牌对应大小到手牌个数的映射
      * @return 拆牌组合
      */
-    size_t getSplitCount(const std::vector<size_t> &hands, const std::unordered_map<size_t, size_t> &ranks) const;
+    size_t getSplitCount(const std::vector<size_t> &hands, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 传入未排序的提示出牌二维向量，根据产品和测试的各种要求进行排序，优先提示那些拆牌少的，带的多的
      * @param ret 排序的提示出牌二维向量
      * @param ranks 手牌对应大小到手牌个数的映射
      */
-    void sortHands(std::vector<std::vector<size_t>> &ret, const std::unordered_map<size_t, size_t> &ranks) const;
+    void sortHands(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const;
 
     /**
      * 将装有提示出牌组合的向量设置为仅提示最大的单牌/💣
@@ -623,8 +614,8 @@ public:
      * @param ranks 带判断牌型与数量的映射
      * @return 是否不成对
      */
-    bool isKickerRankUnpaired(const HandsCategoryModel &                handsCategoryModel,
-                              const std::unordered_map<size_t, size_t> &ranks) const;
+    bool isKickerRankUnpaired(const HandsCategoryModel &      handsCategoryModel,
+                              const std::map<size_t, size_t> &ranks) const;
 };
 PAGAMES_WINNER_POKER_END
 #endif // PAGAMES_WINNER_JUDGE_H
