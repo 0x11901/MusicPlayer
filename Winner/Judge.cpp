@@ -850,56 +850,6 @@ bool Judge::canSplit3(const std::map<size_t, size_t> &others) const
 std::vector<std::vector<size_t>> Judge::combination(const std::vector<size_t> &n, ssize_t k) const
 {
     std::vector<std::vector<size_t>> ret;
-
-    if (n.empty() || k > static_cast<ssize_t>(n.size())) return ret;
-
-    auto copy = n;
-    std::sort(copy.begin(), copy.end());
-
-    std::vector<std::vector<size_t>> node(1);
-    auto                             last = copy[0];
-    ssize_t                          flag = 1;
-
-    for (const auto &i : copy)
-    {
-        if (i != last)
-        {
-            last = i;
-            flag = node.size();
-        }
-
-        ssize_t size = node.size();
-        for (ssize_t j = size - 1; j >= size - flag; j--)
-        {
-            if (static_cast<ssize_t>(node[j].size()) <= k)
-            {
-                node.push_back(node[j]);
-            }
-            else
-            {
-                continue;
-            }
-
-            node.back().push_back(i);
-            if (static_cast<ssize_t>(node.back().size()) == k)
-            {
-                const auto &temp = node.back();
-                // OPTIMIZE: 应用回溯法优化
-                if (std::find_if(ret.begin(), ret.end(), [&temp](std::vector<size_t> i) -> bool { return i == temp; })
-                    == ret.end())
-                {
-                    ret.push_back(node.back());
-                }
-            }
-        }
-    }
-
-    return ret;
-}
-
-std::vector<std::vector<size_t>> Judge::combinationN2639(const std::vector<size_t> &n, ssize_t k) const
-{
-    std::vector<std::vector<size_t>> ret;
     if (n.empty() || static_cast<size_t>(k) > n.size()) return ret;
 
     auto copy = n;
@@ -2051,7 +2001,8 @@ std::vector<std::vector<size_t>> Judge::cardIntentions(const std::vector<size_t>
     auto ranksMultimap = getRanksMultimap(hands, isThreeOfHeartsFirst);
 
     auto values = getCardRanks(hands);
-    auto ranks  = zip(values);
+    std::sort(values.begin(), values.end());
+    auto ranks = zip(values);
 
     // 当必出♥️3且手牌中有四个3时，直接提示四个3即可
     if (isThreeOfHeartsFirst && ranks.find(paiXing3) != ranks.end() && ranks[paiXing3] == 4)
