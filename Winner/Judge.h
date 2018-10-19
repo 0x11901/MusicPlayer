@@ -603,11 +603,20 @@ public:
     /**
      * 带牌是否不成对
      * @param handsCategoryModel 牌型模型
-     * @param ranks 带判断牌型与数量的映射
+     * @param ranks 待判断牌型与数量的映射
      * @return 是否不成对
      */
     bool isKickerRankUnpaired(const HandsCategoryModel &      handsCategoryModel,
                               const std::map<size_t, size_t> &ranks) const;
+
+    /**
+     * 评判是否为特殊💣
+     * @param model 如是特殊💣，会被修改
+     * @param ranks 待判断牌型与数量的映射
+     * @param rank 特殊💣牌型
+     * @return 是否含有特殊💣
+     */
+    bool judgeUnconventionalBomb(HandsCategoryModel &model, const std::map<size_t, size_t> &ranks, size_t rank) const;
 };
 PAGAMES_WINNER_POKER_END
 #endif // PAGAMES_WINNER_JUDGE_H

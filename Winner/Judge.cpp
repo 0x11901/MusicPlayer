@@ -140,25 +140,13 @@ HandsCategoryModel Judge::judgeHandsCategory(const std::vector<size_t> &hands) c
     // 下面的判断必须要考虑AAA当💣的特殊情况，所以先筛选出AAA当💣的特殊情况
     if (Ruler::getInstance().isAsTrioAceBomb())
     {
-        // OPTIMIZE: 下面某处会修改ranks，先拷贝绕过
-        auto copy = ranks;
-        if (copy[paiXingA] == 3)
-        {
-            if (copy.size() == 1)
-            {
-                model.handsCategory = HandsCategory::bomb;
-                model.size          = 3;
-                model.weight        = paiXingA;
-                return model;
-            }
+        if (judgeUnconventionalBomb(model, ranks, paiXingA)) return model;
+    }
 
-            //当💣不可拆
-            if (!Ruler::getInstance().isBombDetachable())
-            {
-                model.handsCategory = HandsCategory::illegal;
-                return model;
-            }
-        }
+    // 同理也得考虑三个3当💣的情况
+    if (Ruler::getInstance().isAsTrioAceBomb())
+    {
+        if (judgeUnconventionalBomb(model, ranks, paiXing3)) return model;
     }
 
     if (size == 3 && isSame(ranks, sanBuDai))
@@ -2345,6 +2333,8 @@ bool Judge::canBeat(const std::vector<size_t> &hands) const
     const auto &ranks                  = zip(getCardRanks(hands));
     const auto  isKickerAlwaysSameRank = Ruler::getInstance().isKickerAlwaysSameRank();
 
+    if (Ruler::getInstance().isMasterTwoTheInvincible() && y.weight == 15) return false;
+
     if (x.handsCategory == HandsCategory::bomb)
     {
         if (y.handsCategory == HandsCategory::bomb)
@@ -2425,6 +2415,30 @@ bool Judge::isKickerRankUnpaired(const HandsCategoryModel &      handsCategoryMo
     for (const auto &item : copy)
     {
         if (item.second % 2 != 0) return true;
+    }
+    return false;
+}
+
+bool Judge::judgeUnconventionalBomb(HandsCategoryModel &model, const std::map<size_t, size_t> &ranks, size_t rank) const
+{
+    // OPTIMIZE: 下面某处会修改ranks，先拷贝绕过
+    auto copy = ranks;
+    if (copy[rank] == 3)
+    {
+        if (copy.size() == 1)
+        {
+            model.handsCategory = HandsCategory::bomb;
+            model.size          = 3;
+            model.weight        = rank;
+        }
+
+        //当💣不可拆
+        if (!Ruler::getInstance().isBombDetachable())
+        {
+            model.handsCategory = HandsCategory::illegal;
+        }
+
+        return true;
     }
     return false;
 }
