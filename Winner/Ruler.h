@@ -62,12 +62,26 @@ public:
      */
     bool isThreeOfHeartsFirst();
 
+    /**
+     * 2是否无敌
+     * @return 为true则为不可战胜的
+     */
+    bool isMasterTwoTheInvincible() const;
+
+    /**
+     * 是否把在勾选了炸弹可拆，起手4个3，出了红桃3后，剩下的3个3也算做炸弹
+     * @return
+     */
+    bool isAsTrioThreeBomb() const;
+
 private:
     bool _isAlwaysWithPair;
     bool _isKickerAlwaysSameRank;
     bool _isBombDetachable;
     bool _isAsTrioAceBomb;
     bool _isThreeOfHeartsFirst;
+    bool _masterTwoTheInvincible;
+    bool _isAsTrioThreeBomb;
 };
 PAGAMES_WINNER_POKER_END
 

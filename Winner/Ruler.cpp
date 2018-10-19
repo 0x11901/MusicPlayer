@@ -19,6 +19,9 @@ Ruler::Ruler()
     _isBombDetachable       = true;
     _isAsTrioAceBomb        = true;
     _isThreeOfHeartsFirst   = true;
+
+    _masterTwoTheInvincible = true;
+    _isAsTrioThreeBomb      = true;
 }
 
 Ruler &Ruler::getInstance()
@@ -50,6 +53,16 @@ bool Ruler::isAsTrioAceBomb()
 bool Ruler::isThreeOfHeartsFirst()
 {
     return _isThreeOfHeartsFirst;
+}
+
+bool Ruler::isMasterTwoTheInvincible() const
+{
+    return _masterTwoTheInvincible;
+}
+
+bool Ruler::isAsTrioThreeBomb() const
+{
+    return _isAsTrioThreeBomb;
 }
 
 PAGAMES_WINNER_POKER_END
