@@ -1968,6 +1968,15 @@ void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::map<si
     std::vector<size_t> temp;
     std::vector<size_t> t;
 
+    if (Ruler::getInstance().isAsTrioThreeBomb() && ranks.find(paiXing3) != ranks.end() && ranks.at(paiXing3) == 3)
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            temp.push_back(paiXing3);
+        }
+        ret.push_back(temp);
+    }
+
     for (const auto &rank : ranks)
     {
         if (rank.second == 4) t.push_back(rank.first);
