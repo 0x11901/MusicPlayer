@@ -92,7 +92,7 @@ int main()
     hands = { 3, 3, 4, 5, 6, 8, 8, 8 };
     hands = { 3, 3, 4, 5, 6, 8, 8, 8, 9, 9, 9 };
     hands = { 3, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9, 9 };
-    hands = { 3, 3, 3, 4, 5, 6, 7, 8, 8, 9 };
+    hands = { 9, 9, 4, 4, 8, 8, 6, 6 };
 
     auto              ret = Judge::getInstance().cardIntentions(test(hands));
     std::stringstream ss;

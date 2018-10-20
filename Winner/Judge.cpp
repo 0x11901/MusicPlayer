@@ -1204,9 +1204,9 @@ void Judge::enumerateSolo(std::vector<std::vector<size_t>> &ret, const std::map<
 
 void Judge::enumeratePair(std::vector<std::vector<size_t>> &ret, const std::map<size_t, size_t> &ranks) const
 {
-    if (ranks.empty() || !canSplit3(ranks)) return;
+    if (ranks.empty()) return;
 
-    auto ranksCopy = filterA(ranks);
+    auto ranksCopy = filterFour(ranks);
 
     for (const auto &rank : ranksCopy)
     {
