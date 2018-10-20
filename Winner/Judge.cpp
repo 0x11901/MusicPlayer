@@ -1316,12 +1316,13 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::map
     auto ranksCopy = ranks;
     ranksCopy.erase(paiXing2);
 
+    ranksCopy = filterFour(ranks);
+
     if (ranksCopy.size() > 4)
     {
         std::vector<size_t> temp;
         std::vector<size_t> t;
 
-        // 由于333、3333牌型不可拆，故先分离3
         // OPTIMIZE: 如果顺子造成的拆牌超过两张后，该顺子不提示。此处通过把结果算出来后再比对是否拆牌过两张。
         // OPTIMIZE: 但正确的做法应是在枚举时发现拆牌多于两张时回溯
         t.reserve(ranksCopy.size());
