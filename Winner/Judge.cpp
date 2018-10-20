@@ -782,6 +782,14 @@ std::map<size_t, size_t> Judge::filterFour(const std::map<size_t, size_t> &ranks
         }
     }
 
+    if (Ruler::getInstance().isAsTrioThreeBomb())
+    {
+        if (copy.find(paiXing3) != copy.end() && copy[paiXing3] == 3)
+        {
+            copy.erase(paiXing3);
+        }
+    }
+
     if (Ruler::getInstance().isAsTrioAceBomb())
     {
         if (copy.find(paiXingA) != copy.end() && copy[paiXingA] == 3)
@@ -804,9 +812,18 @@ bool Judge::isContainsBombs(const std::vector<size_t> &hands) const
     const auto &ranks  = zip(values);
 
     std::vector<size_t> bombs;
-    auto                isAsTrioAceBomb = Ruler::getInstance().isAsTrioAceBomb();
+    auto                isAsTrioThreeBomb = Ruler::getInstance().isAsTrioThreeBomb();
+    auto                isAsTrioAceBomb   = Ruler::getInstance().isAsTrioAceBomb();
     for (const auto &rank : ranks)
     {
+        if (isAsTrioThreeBomb)
+        {
+            if (rank.first == paiXing3 && rank.second == 3)
+            {
+                bombs.push_back(paiXing3);
+                continue;
+            }
+        }
         if (isAsTrioAceBomb)
         {
             if (rank.first == paiXingA && rank.second == 3)
