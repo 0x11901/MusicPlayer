@@ -30,27 +30,27 @@ Ruler &Ruler::getInstance()
     return _instance;
 }
 
-bool Ruler::isAlwaysWithPair()
+bool Ruler::isAlwaysWithPair() const
 {
     return _isAlwaysWithPair;
 }
 
-bool Ruler::isKickerAlwaysSameRank()
+bool Ruler::isKickerAlwaysSameRank() const
 {
     return _isKickerAlwaysSameRank;
 }
 
-bool Ruler::isBombDetachable()
+bool Ruler::isBombDetachable() const
 {
     return _isBombDetachable;
 }
 
-bool Ruler::isAsTrioAceBomb()
+bool Ruler::isAsTrioAceBomb() const
 {
     return _isAsTrioAceBomb;
 }
 
-bool Ruler::isThreeOfHeartsFirst()
+bool Ruler::isThreeOfHeartsFirst() const
 {
     return _isThreeOfHeartsFirst;
 }
@@ -60,9 +60,19 @@ bool Ruler::isMasterTwoTheInvincible() const
     return _masterTwoTheInvincible;
 }
 
+void Ruler::setMasterTwoTheInvincible(bool masterTwoTheInvincible)
+{
+    Ruler::_masterTwoTheInvincible = masterTwoTheInvincible;
+}
+
 bool Ruler::isAsTrioThreeBomb() const
 {
     return _isAsTrioThreeBomb;
+}
+
+void Ruler::setAsTrioThreeBomb(bool asTrioThreeBomb)
+{
+    Ruler::_isAsTrioThreeBomb = asTrioThreeBomb;
 }
 
 PAGAMES_WINNER_POKER_END

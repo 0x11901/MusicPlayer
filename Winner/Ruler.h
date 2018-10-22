@@ -35,44 +35,46 @@ public:
      * 在三 带二必须带相同牌的相关处理中特殊处理
      * @return 是否总是带两张牌
      */
-    bool isAlwaysWithPair();
+    bool isAlwaysWithPair() const;
 
     /**
      * 当发生三带二时，带牌是否总是同一牌型
      * @return
      */
-    bool isKickerAlwaysSameRank();
+    bool isKickerAlwaysSameRank() const;
 
     /**
      * 炸弹是否可以拆开，如不能在用户点击炸弹牌时，四张要同时提起
      * @return
      */
-    bool isBombDetachable();
+    bool isBombDetachable() const;
 
     /**
      * 是否把三张A作为炸弹
      * @return
      */
-    bool isAsTrioAceBomb();
+    bool isAsTrioAceBomb() const;
 
     /**
      * 是不是♥️3必出。
      * 仅当玩家选择了♥️3先出并且♥️3必出时，返回true
      * @return
      */
-    bool isThreeOfHeartsFirst();
+    bool isThreeOfHeartsFirst() const;
 
     /**
      * 2是否无敌
      * @return 为true则为不可战胜的
      */
     bool isMasterTwoTheInvincible() const;
+    void setMasterTwoTheInvincible(bool masterTwoTheInvincible);
 
     /**
      * 是否把在勾选了炸弹可拆，起手4个3，出了红桃3后，剩下的3个3也算做炸弹
      * @return
      */
     bool isAsTrioThreeBomb() const;
+    void setAsTrioThreeBomb(bool asTrioThreeBomb);
 
 private:
     bool _isAlwaysWithPair;
