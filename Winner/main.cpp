@@ -94,6 +94,10 @@ int main()
     hands = { 3, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9, 9 };
     hands = { 9, 9, 4, 4, 8, 8, 6, 6 };
     hands = { 9, 4, 5, 3, 6, 7, 8, 5, 8 };
+    hands = { 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 8 };
+    hands = { 3, 5, 6, 6, 3, 5, 6, 4, 5, 5, 5, 6, 6, 6, 4, 4, 6, 8 };
+    hands = { 9, 4, 5, 3, 6, 7, 8, 5, 8 };
+    hands = { 7, 9, 9, 4, 3, 5, 3, 4, 6, 6, 7, 8, 5, 8 };
 
     auto              ret = Judge::getInstance().cardIntentions(test(hands));
     std::stringstream ss;

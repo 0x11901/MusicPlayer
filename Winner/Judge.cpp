@@ -1337,7 +1337,6 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::map
             t.push_back(rank.first);
         }
 
-        std::sort(t.begin(), t.end());
         if (!isContainsTarget(t)) return;
 
         ssize_t size = t.size();
@@ -1446,8 +1445,6 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &ret, const std:
             }
         }
 
-        std::sort(t.begin(), t.end());
-
         auto    isAlwaysWithPair = Ruler::getInstance().isAlwaysWithPair();
         ssize_t size             = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
@@ -1461,7 +1458,6 @@ void Judge::enumerateTrioChain(std::vector<std::vector<size_t>> &ret, const std:
                 {
                     temp.clear();
 
-                    // FIXME: 此处已经假设数组是有序的
                     // 三顺
                     for (ssize_t k = i; k <= j; ++k)
                     {
@@ -1983,8 +1979,6 @@ void Judge::appendBombs(std::vector<std::vector<size_t>> &ret, const std::map<si
     {
         if (rank.second == 4) t.push_back(rank.first);
     }
-
-    std::sort(t.begin(), t.end());
 
     for (auto item : t)
     {
