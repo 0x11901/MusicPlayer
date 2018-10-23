@@ -342,8 +342,7 @@ std::vector<size_t> Judge::rearrangeHands(const std::vector<size_t> &hands) cons
 
     if (handsCategory == HandsCategory::anyLegalCategory)
     {
-        auto h        = judgeHandsCategory(hands);
-        handsCategory = h.handsCategory;
+        handsCategory = judgeHandsCategory(hands).handsCategory;
     }
     if (handsCategory == HandsCategory::illegal) // OPTIMIZE: 程序闪退
         return hands;
@@ -709,6 +708,7 @@ std::vector<size_t> Judge::unzip(const std::map<size_t, size_t> &zipped) const
             vector.push_back(item.first);
         }
     }
+
     return vector;
 }
 
@@ -1399,8 +1399,6 @@ void Judge::enumeratePairChain(std::vector<std::vector<size_t>> &ret, const std:
         // OPTIMIZE: 连对中必须要有最小牌型，使用一个垃圾办法筛选
         if (!isContainsTarget(t)) return;
 
-        std::sort(t.begin(), t.end());
-
         ssize_t size = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
         {
@@ -1419,8 +1417,6 @@ void Judge::enumeratePairChain(std::vector<std::vector<size_t>> &ret, const std:
                         temp.push_back(t[k]);
                     }
 
-                    // OPTIMIZE: 如果排序没有问题t[i]就是最小牌型，但是因不好验证暂时使用保险的方法
-                    // OPTIMIZE: 跑得快中只需要找出最长的不可拆连对就行了，所以找到一个就 return
                     if (isContainsTarget(temp))
                     {
                         ret.push_back(temp);
