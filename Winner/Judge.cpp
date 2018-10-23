@@ -144,7 +144,7 @@ HandsCategoryModel Judge::judgeHandsCategory(const std::vector<size_t> &hands) c
     }
 
     // 同理也得考虑三个3当💣的情况
-    if (Ruler::getInstance().isAsTrioAceBomb())
+    if (Ruler::getInstance().isAsTrioThreeBomb())
     {
         if (judgeUnconventionalBomb(model, ranks, paiXing3)) return model;
     }
