@@ -453,7 +453,13 @@ std::vector<size_t> Judge::rearrangeHands(const std::vector<size_t> &hands) cons
             }
         }
 
-        if (woyebuzhidaowozaixieshenmele.empty()) return hands;
+        // 当最后一手牌由服务端打出，那么可能突破此限制
+        if (woyebuzhidaowozaixieshenmele.empty())
+        {
+            ret = hands;
+            std::sort(ret.begin(), ret.end());
+            return ret;
+        }
 
         const auto &max = std::max_element(woyebuzhidaowozaixieshenmele.begin(),
                                            woyebuzhidaowozaixieshenmele.end(),
