@@ -15,13 +15,13 @@ PAGAMES_WINNER_POKER_BEGIN
 Ruler::Ruler()
 {
     _isAlwaysWithPair       = false;
-    _isKickerAlwaysSameRank = true;
+    _isKickerAlwaysSameRank = false;
     _isBombDetachable       = true;
     _isAsTrioAceBomb        = true;
     _isThreeOfHeartsFirst   = true;
 
     _masterTwoTheInvincible = true;
-    _isAsTrioThreeBomb      = true;
+    _isAsTrioThreeBomb      = false;
 }
 
 Ruler &Ruler::getInstance()

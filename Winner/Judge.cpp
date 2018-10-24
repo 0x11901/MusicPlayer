@@ -2080,7 +2080,7 @@ std::vector<std::vector<size_t>> Judge::cardHint(const std::vector<size_t> &hand
     // key 为牌型，value 为约定的实数（包含牌型与花色）
     auto ranksMultimap = getRanksMultimap(hands);
     auto values        = getCardRanks(hands);
-
+    std::sort(values.begin(), values.end());
     auto ranks = zip(values);
     auto copy  = filterFour(ranks);
 
