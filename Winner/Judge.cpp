@@ -2073,7 +2073,7 @@ std::vector<std::vector<size_t>> Judge::cardHint(const std::vector<size_t> &hand
     std::vector<std::vector<size_t>> ret;
     if (hands.empty()) return ret;
 
-    auto handsCategory = _currentHandsCategory.handsCategory.handsCategory;
+    const auto &handsCategory = _currentHandsCategory.handsCategory.handsCategory;
 
     if (handsCategory == HandsCategory::illegal || handsCategory == HandsCategory::anyLegalCategory) return ret;
 
@@ -2085,9 +2085,13 @@ std::vector<std::vector<size_t>> Judge::cardHint(const std::vector<size_t> &hand
     auto copy  = filterFour(ranks);
 
     // 枚举法
-    switch (_currentHandsCategory.handsCategory.handsCategory)
+    switch (handsCategory)
     {
         case HandsCategory::solo:
+            // 在扬州麻将里2不可战胜
+            if (_currentHandsCategory.handsCategory.weight == paiXing2
+                && Ruler::getInstance().isMasterTwoTheInvincible())
+                return ret;
             exhaustiveSolo(ret, copy);
             break;
         case HandsCategory::pair:
