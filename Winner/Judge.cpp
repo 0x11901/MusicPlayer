@@ -1059,7 +1059,7 @@ std::tuple<bool, HandsCategoryModel> Judge::isTrioChain(const std::map<size_t, s
         }
         if (vector.size() > 1)
         {
-            std::sort(vector.begin(), vector.end());
+            // std::sort(vector.begin(), vector.end());
             ssize_t count = vector.size();
             for (ssize_t i = 0; i < count - 1; ++i)
             {
@@ -1648,7 +1648,6 @@ void Judge::exhaustiveChain(std::vector<std::vector<size_t>> &ret, const std::ma
         {
             t.push_back(rank.first);
         }
-        std::sort(t.begin(), t.end());
         ssize_t size = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
         {
@@ -1695,8 +1694,6 @@ void Judge::exhaustivePairChain(std::vector<std::vector<size_t>> &ret, const std
             }
         }
 
-        std::sort(t.begin(), t.end());
-
         ssize_t size = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
         {
@@ -1740,7 +1737,6 @@ void Judge::exhaustiveTrioChain(std::vector<std::vector<size_t>> &ret, const std
                 t.push_back(rank.first);
             }
         }
-        std::sort(t.begin(), t.end());
         ssize_t size = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
         {
@@ -1787,7 +1783,6 @@ void Judge::exhaustiveTrioChainWithSolo(std::vector<std::vector<size_t>> &ret,
                 t.push_back(rank.first);
             }
         }
-        std::sort(t.begin(), t.end());
         ssize_t size = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
         {
@@ -1842,7 +1837,6 @@ void Judge::exhaustiveTrioChainWithPair(std::vector<std::vector<size_t>> &ret,
                 t.push_back(rank.first);
             }
         }
-        std::sort(t.begin(), t.end());
         ssize_t size = t.size();
         for (ssize_t i = 0; i < size - 1; ++i)
         {
@@ -2245,8 +2239,10 @@ void Judge::setTheHighestSingleCard(const std::vector<size_t> &                 
 
 bool Judge::canPlay(const std::vector<size_t> &hands, const HandsCategoryModel &handsCategoryModel) const
 {
-    const auto &handsCategory          = handsCategoryModel.handsCategory;
-    const auto &ranks                  = zip(getCardRanks(hands));
+    const auto &handsCategory = handsCategoryModel.handsCategory;
+    auto        values        = getCardRanks(hands);
+    std::sort(values.begin(), values.end());
+    const auto &ranks                  = zip(values);
     const auto  isKickerAlwaysSameRank = Ruler::getInstance().isKickerAlwaysSameRank();
 
     // 当强制三带二时，所有的带牌不满两张都无法出牌
@@ -2263,7 +2259,6 @@ bool Judge::canPlay(const std::vector<size_t> &hands, const HandsCategoryModel &
             }
             if (vector.size() > 1)
             {
-                std::sort(vector.begin(), vector.end());
                 ssize_t count = vector.size();
                 for (ssize_t i = 0; i < count - 1; ++i)
                 {
@@ -2313,7 +2308,6 @@ bool Judge::canPlay(const std::vector<size_t> &hands, const HandsCategoryModel &
             }
             if (vector.size() > 1)
             {
-                std::sort(vector.begin(), vector.end());
                 ssize_t count = vector.size();
                 for (ssize_t i = 0; i < count - 1; ++i)
                 {
