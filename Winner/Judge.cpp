@@ -1059,7 +1059,7 @@ std::tuple<bool, HandsCategoryModel> Judge::isTrioChain(const std::map<size_t, s
         }
         if (vector.size() > 1)
         {
-            // std::sort(vector.begin(), vector.end());
+            std::sort(vector.begin(), vector.end());
             ssize_t count = vector.size();
             for (ssize_t i = 0; i < count - 1; ++i)
             {
