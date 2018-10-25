@@ -120,12 +120,14 @@ int main()
 #pragma mark - 跟牌提示
     std::vector<size_t> tv;
     tv = { 4, 4, 5, 5, 4, 5 };
+    tv = { 12 };
     Judge::getInstance().setCurrentHandsCategory(test(tv), test(tv));
 
     std::vector<size_t> hands;
     hands = { 12, 12, 12, 12, 4, 5, 6, 7, 7, 7 };
     hands = { 3, 4, 5, 6, 8, 8, 8, 13, 13 };
     hands = { 7, 7, 7, 4, 5, 6, 4, 4, 5, 6, 9, 6, 5 };
+    hands = { 15, 13, 13, 9, 8, 7, 4, 4, 4, 4 };
 
     auto              ret = Judge::getInstance().cardHint(test(hands));
     std::stringstream ss;
