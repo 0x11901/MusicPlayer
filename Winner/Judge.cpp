@@ -1320,9 +1320,8 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::map
 
     // 2不参与连牌
     auto ranksCopy = ranks;
-    ranksCopy.erase(paiXing2);
-
     ranksCopy = filterFour(ranks);
+    ranksCopy.erase(paiXing2);
 
     if (ranksCopy.size() > 4)
     {
