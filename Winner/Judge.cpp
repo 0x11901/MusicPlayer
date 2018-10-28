@@ -284,7 +284,10 @@ bool Judge::isPass(const std::vector<size_t> &hands)
 bool Judge::canPlay(const std::vector<size_t> &hands, bool isStartingHand) const
 {
     // FIXME: 首出♥️3已经由外部处理，其实下面一行已经可以无需判断
-    if (isStartingHand && Ruler::getInstance().isThreeOfHeartsFirst() && !isContainsThreeOfHearts(hands)) return false;
+    // FIXME: 添加是否当前手牌中含有红桃三的判断，因手牌中若无红桃三且系首出，则无判断之必要了。
+    if (isStartingHand && Ruler::getInstance().isThreeOfHeartsFirst() && isContainsThreeOfHearts(_currentHands)
+        && !isContainsThreeOfHearts(hands))
+        return false;
 
     const auto &handsCategoryModel = Judge::getInstance().judgeHandsCategory(hands);
     const auto &handsCategory      = handsCategoryModel.handsCategory;
@@ -1320,7 +1323,7 @@ void Judge::enumerateChain(std::vector<std::vector<size_t>> &ret, const std::map
 
     // 2不参与连牌
     auto ranksCopy = ranks;
-    ranksCopy = filterFour(ranks);
+    ranksCopy      = filterFour(ranks);
     ranksCopy.erase(paiXing2);
 
     if (ranksCopy.size() > 4)
