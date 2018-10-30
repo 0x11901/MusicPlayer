@@ -2443,23 +2443,11 @@ bool Judge::isKickerRankUnpaired(const HandsCategoryModel &      handsCategoryMo
 
 bool Judge::judgeUnconventionalBomb(HandsCategoryModel &model, const std::map<size_t, size_t> &ranks, size_t rank) const
 {
-    // OPTIMIZE: 下面某处会修改ranks，先拷贝绕过
-    auto copy = ranks;
-    if (copy[rank] == 3)
+    if (ranks.find(rank) != ranks.end() && ranks.at(rank) == 3 && ranks.size() == 1)
     {
-        if (copy.size() == 1)
-        {
-            model.handsCategory = HandsCategory::bomb;
-            model.size          = 3;
-            model.weight        = rank;
-        }
-
-        //当💣不可拆
-        if (!Ruler::getInstance().isBombDetachable())
-        {
-            model.handsCategory = HandsCategory::illegal;
-        }
-
+        model.handsCategory = HandsCategory::bomb;
+        model.size          = 3;
+        model.weight        = rank;
         return true;
     }
     return false;
