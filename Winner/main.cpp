@@ -188,10 +188,10 @@ int main()
 
 #pragma mark - 测试can play
     std::stringstream   ss;
-    std::vector<size_t> weight        = { 5, 5, 5, 6, 6, 6, 7, 7, 8, 8 };
-    std::vector<size_t> handsCategory = { 5, 5, 5, 6, 6, 6, 7, 7, 8, 8 };
+    std::vector<size_t> weight        = { 9, 9, 9, 5, 6 };
+    std::vector<size_t> handsCategory = { 9, 9, 9, 5, 6 };
 
-    std::vector<size_t> hands = { 14, 14, 14 };
+    std::vector<size_t> hands = { 14, 14, 14, 2, 5 };
 
     Judge::getInstance().setCurrentHandsCategory(test(weight), test(handsCategory));
     auto can = Judge::getInstance().canPlay(test(hands));

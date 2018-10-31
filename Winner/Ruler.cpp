@@ -21,7 +21,7 @@ Ruler::Ruler()
     _isThreeOfHeartsFirst   = true;
 
     _masterTwoTheInvincible = true;
-    _isAsTrioThreeBomb      = false;
+    _isAsTrioThreeBomb      = true;
 }
 
 Ruler &Ruler::getInstance()
