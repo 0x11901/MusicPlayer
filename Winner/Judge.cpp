@@ -34,7 +34,7 @@ constexpr size_t paiXing2 = 15;
 constexpr size_t hongTao3 = 771;
 
 #pragma mark - 模版
-template <class BidirIt> bool next_combination(BidirIt first1, BidirIt last1, BidirIt first2, BidirIt last2)
+template <typename BidirIt> bool next_combination(BidirIt first1, BidirIt last1, BidirIt first2, BidirIt last2)
 {
     if ((first1 == last1) || (first2 == last2)) return false;
     BidirIt m1 = last1;
@@ -69,7 +69,7 @@ template <class BidirIt> bool next_combination(BidirIt first1, BidirIt last1, Bi
     return !result;
 }
 
-template <class BidirIt> bool next_combination(BidirIt first, BidirIt middle, BidirIt last)
+template <typename BidirIt> bool next_combination(BidirIt first, BidirIt middle, BidirIt last)
 {
     return next_combination(first, middle, middle, last);
 }
